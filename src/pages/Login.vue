@@ -3,10 +3,8 @@ import FormLogin from '../components/FormLogin.vue'
 
 export default {
     name: 'Login',
-    components: {
-        InputText,
-        Button,
-        Message
+    components:{
+        FormLogin
     }
 }
 
@@ -58,6 +56,6 @@ body {
 }
 .img{
     width: 100%;
-    max-width: 700px;
+    max-width: 800px;
 }
 </style>

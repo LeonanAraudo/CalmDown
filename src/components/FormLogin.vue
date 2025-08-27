@@ -1,60 +1,46 @@
-<script>
+<script setup>
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import { ref } from 'vue';
-import { success, z } from 'zod';
-import Message from 'primevue/message';
+import { Field, Form  } from 'vee-validate';
 
-const email = ref('');
-const senha = ref('');
-const errorEmail = ref('');
-const errorSenha = ref('');
+function required(value) {
+  return value && value.trim() ? true : 'Campo obrigatório';
+}
 
-const schema = z.object({
-  email: z.string().min(1, 'O campo e-mail é obrigatório'),
-  senha: z.string().min(1, 'O campo senha é obrigatório')
-});
 
-const onSubmit = () => {
-  const result = schema.safeParse({ email: email.value, senha: senha.value });
-
-  if (!result.success) {
-    // separar erros
-    const errors = result.error.formErrors.fieldErrors;
-    errorEmail.value = errors.email ? errors.email[0] : '';
-    errorSenha.value = errors.senha ? errors.senha[0] : '';
-  } else {
-    errorEmail.value = '';
-    errorSenha.value = '';
-    alert('Formulário enviado com sucesso!');
-  }
+const onSubmit = (values) => {
+  alert('Formulário enviado com sucesso! ' + JSON.stringify(values));
 };
 </script>
 
 <template>
-      <form  @submit.prevent="onSubmit" class="formulario">
+      <Form @submit="onSubmit" class="formulario" >
                 <p class="titulo">Entre e sinta-se à vontade</p>
                 <div class="grupoInput">
                     <div class="bloco-input">
-                        <label for="email" class="label">E-mail</label>
-                        <InputText id="email" name="email" class="input" type="text" v-model="email"/>
-                        <Message v-if="errorMessage" severity="error" :text="errorMessage"/>
+                        <Field name="email" :rules="required" v-slot="{ field, errorMessage}">
+                            <label for="email" class="label">E-mail</label>
+                            <InputText v-bind="field" id="email"  class="input" type="text" />
+                             <p v-if="errorMessage" class="erro">{{ errorMessage }}</p>
+                        </Field>
                     </div>
                    <div class="bloco-input">
-                        <label for="senha" class="label">Senha</label>
-                        <InputText name="senha" id="senha" class="input" type="password" v-model="senha"/>
-                        <Message v-if="errorMessage" severity="error" :text="errorMessage"/>
+                        <Field name="senha" :rules="required" v-slot="{ field,errorMessage }">
+                            <label for="senha" class="label">Senha</label>
+                            <InputText v-bind="field" id="senha" class="input" type="password" />
+                            <p v-if="errorMessage" class="erro">{{ errorMessage }}</p>
+                        </Field>
                     </div>
                 </div>
                 <div class="containerBotao">
-                    <Button type="submit" class="botaoEntrar" label="Entrar"/>
+                  <Button type="submit" class="botaoEntrar" label="Entrar" />
                 </div>
                 <div>
                     <p class="textoBaixo">Ainda não tem conta?<span class="textoBaixoPT2">Cadastre-se</span></p>
                 </div>
-            </form> 
-            
+            </Form> 
 </template>
+
 <style>
 .formulario{
     background-color: #FAFEFF;
@@ -92,6 +78,7 @@ const onSubmit = () => {
     transition: all 0.5s !important;
 }
 .textoBaixo{
+    font-size: clamp(1rem, 2vw, 1.165rem);
     font-weight: 500;
 }
 .textoBaixoPT2{
@@ -118,5 +105,9 @@ input{
     border: none !important;
     background-color: #E3E5ED !important;
     width: 100% !important;
+}
+.erro{
+    color: red;
+    padding-left: 10px;
 }
 </style>
