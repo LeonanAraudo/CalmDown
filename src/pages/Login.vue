@@ -4,11 +4,11 @@ import FormLogin from '../components/FormLogin.vue'
 
 <template>
     <div class="conteiner">
-        <div class="metade1">
+        <div class="box1">
           <FormLogin/>
         </div>
-            <div class="metade2">
-            <img class="img" src="../../public/imagem3.png" alt="" srcset="">
+        <div class="box2">
+            <img class="img3" src="../../public/imagem3.png" alt="" srcset="">
         </div>
     </div>
 </template>
@@ -30,7 +30,7 @@ body {
     align-items: stretch;
     flex-direction: row;
 }
-.metade1{
+.box1{
     width: 45%;
     height: 100vh; 
     display: flex;
@@ -38,7 +38,7 @@ body {
     justify-content: baseline;
     padding-left: 4%;
 }
-.metade2{
+.box2{
     width:55%;
     display: flex;
     align-items: center;
@@ -47,5 +47,18 @@ body {
 .img{
     width: 100%;
     max-width: 800px;
+}
+@media(max-width: 768px){
+.img3{
+    display: none;
+}
+.box1{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 }
 </style>

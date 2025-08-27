@@ -115,17 +115,21 @@ body{
     right: -250px;
 }
 @media(max-width: 768px){
+.conteiner{
+ flex-direction: column;
+}
 .img{
-    display: none;
+    background-image: url('../../public/imagem4.png');
 }
 .titulo1{
     font-size: 20px;
 }
 .metade1{
     width: 100%;
+    order: 2;
 }
 .metade2{
-    width: 0;
+    width: 100%;
 }
 .circulo{
     display: none;

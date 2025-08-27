@@ -7,16 +7,16 @@ import Password from 'primevue/password';
 
 const senha = ref('')
 const confirmarSenha = ref('')
-
-function validarConfirmarSenha(value) {
+function validarConfirmarSenha(value, { form }) {
   if (!value || !value.trim()) {
     return 'Campo obrigatório';
   }
-  if (value !== senha.value) {
+  if (value !== form.senha) {
     return 'As senhas devem ser iguais';
   }
   return true;
 }
+
 function required(value) {
   return value && value.trim() ? true : 'Campo obrigatório';
 }
@@ -59,7 +59,7 @@ const onSubmit = (values) => {
                         </Field>
                     </div>
                     <div class="bloco-input">
-                        <Field name="confirmarSenha" :rules="validarConfirmarSenha" v-slot="{ field,errorMessage }">
+                        <Field name="confirmarSenha" :rules="validarConfirmarSenha" v-slot="{ field,errorMessage,form }">
                             <label for="confirmarSenha" class="label">Confirmar senha</label>
                             <Password 
                               toggleMask 
@@ -149,5 +149,11 @@ input{
 .erro{
     color: red;
     padding-left: 10px;
+}
+@media(max-width: 768px){
+.formulario{
+    width: 90%;
+    height: 60%;
+}
 }
 </style>
