@@ -4,20 +4,32 @@ import Button from 'primevue/button';
 import { Field, Form  } from 'vee-validate';
 import { ref } from 'vue';
 import Password from 'primevue/password';
-const value = ref(null);
 
+const senha = ref('')
+const confirmarSenha = ref('')
+
+function validarConfirmarSenha(value) {
+  if (!value || !value.trim()) {
+    return 'Campo obrigatório';
+  }
+  if (value !== senha.value) {
+    return 'As senhas devem ser iguais';
+  }
+  return true;
+}
 function required(value) {
   return value && value.trim() ? true : 'Campo obrigatório';
 }
 
 const onSubmit = (values) => {
-  alert('Login realizado com sucesso! ' + JSON.stringify(values));
+  alert('Cadastro realizado com sucesso! ' + JSON.stringify(values));
 };
+
 </script>
 
 <template>
-      <Form @submit="onSubmit" class="formularioLogin" >
-                <p class="titulo">Entre e sinta-se à vontade</p>
+      <Form @submit="onSubmit" class="formulario" >
+                <p class="titulo">Cadastre-se</p>
                 <div class="grupoInput">
                     <div class="bloco-input">
                         <Field name="email" :rules="required" v-slot="{ field, errorMessage}">
@@ -46,21 +58,32 @@ const onSubmit = (values) => {
                             <p v-if="errorMessage" class="erro">{{ errorMessage }}</p>
                         </Field>
                     </div>
+                    <div class="bloco-input">
+                        <Field name="confirmarSenha" :rules="validarConfirmarSenha" v-slot="{ field,errorMessage }">
+                            <label for="confirmarSenha" class="label">Confirmar senha</label>
+                            <Password 
+                              toggleMask 
+                              placeholder="Confirme sua senha" 
+                              v-bind="field" 
+                              id="confirmarSenha" 
+                              class="password-field"
+                              input-class="password-input"
+                            />
+                            <p v-if="errorMessage" class="erro">{{ errorMessage }}</p>
+                        </Field>
+                    </div>
                 </div>
                 <div class="containerBotao">
-                  <Button type="submit" class="botaoEntrar" label="Entrar" />
-                </div>
-                <div>
-                    <p class="textoBaixo">Ainda não tem conta?<router-link to="/Cadastro" class="textoBaixoPT2">Cadastre-se</router-link></p>
+                  <Button type="submit" class="botaoEntrar" label="Cadastrar" />
                 </div>
             </Form> 
 </template>
 
 <style>
-.formularioLogin{
+.formulario{
     background-color: #FAFEFF;
     display: flex;
-    width: 85%;
+    width: 40%;
     height: 80%;
     align-items: center;
     justify-content:space-around;
@@ -91,19 +114,6 @@ const onSubmit = (values) => {
 .botaoEntrar:hover{
     transform: scale(1.05) !important;
     transition: all 0.5s !important;
-}
-.textoBaixo{
-    font-size: clamp(1rem, 2vw, 1.165rem);
-    font-weight: 500;
-}
-.textoBaixoPT2{
-    font-weight: 600;
-    color: #2D9CDB;
-    cursor: pointer;
-}
-.textoBaixoPT2:hover{
-    color: #084061;
-    transition:all 0.5s;
 }
 .grupoInput{
     width: 100%;

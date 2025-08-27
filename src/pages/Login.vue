@@ -1,31 +1,21 @@
-<script>
+<script setup>
 import FormLogin from '../components/FormLogin.vue'
-
-export default {
-    name: 'Login',
-    components:{
-        FormLogin
-    }
-}
-
 </script>
 
 <template>
-
     <div class="conteiner">
-
         <div class="metade1">
           <FormLogin/>
         </div>
             <div class="metade2">
-            <img class="img" src="../../public/imagem1.png" alt="" srcset="">
+            <img class="img" src="../../public/imagem3.png" alt="" srcset="">
         </div>
     </div>
 </template>
 
 <style>
 *{
-     margin: 0px;
+    margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
