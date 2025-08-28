@@ -31,12 +31,11 @@ body {
     flex-direction: row;
 }
 .box1{
-    width: 45%;
+    width: 40%;
     height: 100vh; 
     display: flex;
     align-items: center;
-    justify-content: baseline;
-    padding-left: 4%;
+    justify-content: center;
 }
 .box2{
     width:55%;
@@ -58,6 +57,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.box2{
+    width: 0;
+    height: 0;
 }
 
 }

@@ -167,6 +167,10 @@ input{
 .formularioLogin{
     width: 90%;
     height: 60%;
+    margin-bottom: 100px;
+}
+.input{
+    color: #000;
 }
 
 }

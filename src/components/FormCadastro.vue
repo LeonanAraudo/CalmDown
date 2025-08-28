@@ -168,6 +168,10 @@ input{
 .formulario{
     width: 90%;
     height: 60%;
+    margin-bottom: 100px;
+}
+.input{
+    color: #000;
 }
 }
 </style>
