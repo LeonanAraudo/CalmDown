@@ -1,6 +1,6 @@
-# CalmDown - Aplicação de Rede Social
+# CalmDown - Aplicação Frontend em Vue.js
 
-Uma aplicação Vue.js moderna e confortável para redes sociais, com foco em experiência do usuário receptiva e acolhedora.
+Projeto frontend em Vue.js moderno e responsivo, desenvolvido para uma aplicação de rede social. Disponível nas versões desktop e mobile, com três telas principais.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -9,7 +9,6 @@ Uma aplicação Vue.js moderna e confortável para redes sociais, com foco em ex
 - **Vue Router 4.5.1** - Roteamento oficial do Vue
 - **PrimeVue 4.3.7** - Biblioteca de componentes UI
 - **Vee-Validate 4.15.1** - Validação de formulários
-- **Zod 4.1.3** - Validação de esquemas TypeScript-first
 - **Axios 1.11.0** - Cliente HTTP para requisições à API
 
 ## 🎨 Padrões de Projeto
@@ -76,12 +75,17 @@ npm run preview
 - **Email**: Validação de formato e campo obrigatório
 - **Senha**: Campo obrigatório
 - **Feedback visual**: Mensagens de erro em tempo real
+  
+  <img width="1366" height="604" alt="image" src="https://github.com/user-attachments/assets/541baec7-988e-4507-b6cd-284f4e7ed21f" />
+
 
 ### Formulário de Cadastro
 - **Email**: Validação de formato e campo obrigatório
 - **Senha**: Campo obrigatório
 - **Confirmar Senha**: Validação de correspondência com a senha
 - **Validação cruzada**: Verificação de igualdade entre senhas
+  
+  <img width="1366" height="609" alt="image" src="https://github.com/user-attachments/assets/1af5658f-cf3b-46d3-a9f2-b4b6429ef8cd" />
 
 ## 🌐 Integração com API
 
@@ -103,33 +107,9 @@ const response = await axios.post('SUA_URL_API_AQUI', {
 })
 ```
 
-## 🎯 Funcionalidades
 
-- **Tela de Boas-vindas**: Interface acolhedora e receptiva
-- **Sistema de Login**: Autenticação segura com validações
-- **Sistema de Cadastro**: Registro de usuários com validações
-- **Navegação Fluida**: Transições suaves entre páginas
-- **Design Responsivo**: Adaptável a diferentes dispositivos
 
-## 🚀 Scripts Disponíveis
 
-- `npm run dev` - Servidor de desenvolvimento
-- `npm run build` - Build de produção
-- `npm run preview` - Preview da build
-
-## 📱 Características da Interface
-
-- **Tema Aura**: Design moderno e elegante do PrimeVue
-- **Componentes PrimeVue**: Inputs, botões e formulários estilizados
-- **CSS Customizado**: Estilos personalizados para melhor UX
-- **Responsividade**: Layout adaptável para mobile e desktop
-
-## 🔧 Configurações Adicionais
-
-- **Vite**: Configurado para Vue 3 com hot reload
-- **PrimeVue**: Tema Aura configurado globalmente
-- **Vue Router**: Roteamento com history mode
-- **Validação**: Sistema robusto com Vee-Validate
 
 ---
 
