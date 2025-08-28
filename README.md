@@ -1,4 +1,4 @@
-# CalmDown - Aplicação de Rede Social
+# CalmDown - Aplicação Frontend em Vue.js
 
 Projeto frontend em Vue.js moderno e responsivo, desenvolvido para uma aplicação de rede social. Disponível nas versões desktop e mobile, com três telas principais.
 
