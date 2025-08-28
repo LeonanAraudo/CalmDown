@@ -13,7 +13,7 @@ import FormLogin from '../components/FormLogin.vue'
     </div>
 </template>
 
-<style>
+<style scoped>
 *{
     margin: 0px;
     padding: 0px;

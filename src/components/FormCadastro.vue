@@ -92,7 +92,7 @@ const onSubmit = async (values) => {
             </Form> 
 </template>
 
-<style>
+<style scoped>
 .formulario{
     background-color: #FAFEFF;
     display: flex;

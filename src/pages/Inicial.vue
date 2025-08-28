@@ -27,7 +27,7 @@ const irParaLogin = () => {
     <div class="circulo circulo-1"></div>
     <div class="circulo circulo-2"></div>
 </template>
-<style>
+<style scoped>
 *{
     margin: 0;
     padding: 0;
