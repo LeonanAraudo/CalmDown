@@ -2,11 +2,9 @@
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import { Field, Form  } from 'vee-validate';
-import { ref } from 'vue';
 import Password from 'primevue/password';
+import axios from 'axios';
 
-const senha = ref('')
-const confirmarSenha = ref('')
 function validarConfirmarSenha(value, { form }) {
   if (!value || !value.trim()) {
     return 'Campo obrigatório';
@@ -16,14 +14,29 @@ function validarConfirmarSenha(value, { form }) {
   }
   return true;
 }
-
+function validateEmail(value) {
+    if (!value || !value.trim()) return 'Campo obrigatório';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value) ? true : 'Email inválido';
+}
 function required(value) {
   return value && value.trim() ? true : 'Campo obrigatório';
 }
 
-const onSubmit = (values) => {
-  alert('Cadastro realizado com sucesso! ' + JSON.stringify(values));
-};
+const onSubmit = async (values) => {
+    try{
+        const response = await axios.post('', {
+            email: values.email,
+            senha: values.senha
+        })
+        console.log('Cadastro realizado com sucesso',response.data)
+    }catch(error){
+        console.error('Erro ao tentar cadastrar usuário',error.response?.data || error.message)
+        alert('Falha ao tentar cadastrar usuário ( Insira a URL da api para funcionar corretamente )')
+    }
+
+}
+
 
 </script>
 
@@ -32,7 +45,7 @@ const onSubmit = (values) => {
                 <p class="titulo">Cadastre-se</p>
                 <div class="grupoInput">
                     <div class="bloco-input">
-                        <Field name="email" :rules="required" v-slot="{ field, errorMessage}">
+                        <Field name="email" :rules="validateEmail" v-slot="{ field, errorMessage}">
                             <label for="email" class="label">E-mail</label>
                             <InputText 
                                 placeholder="Digite seu e-mail" 
@@ -59,7 +72,7 @@ const onSubmit = (values) => {
                         </Field>
                     </div>
                     <div class="bloco-input">
-                        <Field name="confirmarSenha" :rules="validarConfirmarSenha" v-slot="{ field,errorMessage,form }">
+                        <Field name="confirmarSenha" :rules="validarConfirmarSenha" v-slot="{ field,errorMessage }">
                             <label for="confirmarSenha" class="label">Confirmar senha</label>
                             <Password 
                               toggleMask 
@@ -74,7 +87,7 @@ const onSubmit = (values) => {
                     </div>
                 </div>
                 <div class="containerBotao">
-                  <Button type="submit" class="botaoEntrar" label="Cadastrar" />
+                  <Button type="submit" class="botaoCadastro" label="Cadastrar" />
                 </div>
             </Form> 
 </template>
@@ -86,7 +99,7 @@ const onSubmit = (values) => {
     width: 40%;
     height: 80%;
     align-items: center;
-    justify-content:space-around;
+    justify-content:space-evenly;
     flex-direction: column;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -103,15 +116,16 @@ const onSubmit = (values) => {
     font-weight:600;
     color: #333333;
 }
-.botaoEntrar{
+.botaoCadastro{
     width: 40% !important;
     background-color: #A8D5BA !important;
     border: none !important;
     outline: none !important;
     color:#333333 !important;
     border-radius: 10px !important;
+    margin-block:30px ;
 }
-.botaoEntrar:hover{
+.botaoCadastro:hover{
     transform: scale(1.05) !important;
     transition: all 0.5s !important;
 }
@@ -121,7 +135,7 @@ const onSubmit = (values) => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 .bloco-input{
     width: 70%;

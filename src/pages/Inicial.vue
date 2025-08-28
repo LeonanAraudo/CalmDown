@@ -14,8 +14,7 @@ const irParaLogin = () => {
     <div class="conteiner">
         <div class="metade1">
             <div>
-                <p class="titulo1">Bem-vindo a um espaço calmo para 
-                    você se conectar de forma leve</p>
+                <p class="titulo1">Bem-vindo a um espaço calmo para você se conectar de forma leve</p>
             </div>
             <div class="boxBotao">
                 <Button @click="irParaLogin" label="Começar com tranquilidade" icon="pi pi-arrow-right" style="color: #333333" class="botao" icon-pos="right" />
@@ -55,7 +54,8 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 80px;
+    gap: 60px;
+    padding-left: 40px;
 }
 .metade2{
     width: 50%;
@@ -122,10 +122,15 @@ body{
     background-image: url('../../public/imagem4.png');
 }
 .titulo1{
-    font-size: 20px;
+    margin-inline: 20px;
+    font-size: 25px;
 }
 .metade1{
+    padding-left: 0px;
     width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     order: 2;
 }
 .metade2{
@@ -133,6 +138,9 @@ body{
 }
 .circulo{
     display: none;
+}
+.botao{
+    width: 70% !important;
 }
 }
 </style>

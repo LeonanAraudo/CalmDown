@@ -46,7 +46,7 @@ body {
 }
 .img{
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
 }
 @media(max-width: 768px){
 .img3{

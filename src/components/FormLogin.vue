@@ -2,17 +2,39 @@
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import { Field, Form  } from 'vee-validate';
-import { ref } from 'vue';
 import Password from 'primevue/password';
-const value = ref(null);
+import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 function required(value) {
   return value && value.trim() ? true : 'Campo obrigatório';
 }
 
-const onSubmit = (values) => {
-  alert('Login realizado com sucesso! ' + JSON.stringify(values));
-};
+function validateEmail(value) {
+    if (!value || !value.trim()) return 'Campo obrigatório';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value) ? true : 'Email inválido';
+}
+
+const router = useRouter()
+
+const onSubmit = async (values) => {
+    try{
+        const response = await axios.post('', {
+            email: values.email,
+            senha: values.senha
+        })
+        if(response.data.token){
+            localStorage.setItem('token', response.data.token);
+            console.log('Login realizado com sucesso!', response.data);
+            router.push('/')
+        }
+    }catch(error){
+        console.error('Erro ao tentar realizar login',error.response?.data || error.message)
+        alert('Credenciais inválidas ( Insira a URL da api para funcionar corretamente )')
+    }
+
+}
 </script>
 
 <template>
@@ -20,7 +42,7 @@ const onSubmit = (values) => {
                 <p class="titulo">Entre e sinta-se à vontade</p>
                 <div class="grupoInput">
                     <div class="bloco-input">
-                        <Field name="email" :rules="required" v-slot="{ field, errorMessage}">
+                        <Field name="email" :rules="validateEmail" v-slot="{ field, errorMessage}">
                             <label for="email" class="label">E-mail</label>
                             <InputText 
                                 placeholder="Digite seu e-mail" 
@@ -75,6 +97,7 @@ const onSubmit = (values) => {
     font-size: clamp(1rem, 2vw, 1.365rem);
     font-weight: bold;
     color: #333333;
+    margin-top: 20px;
 }
 .label{
     font-weight:600;
@@ -93,7 +116,7 @@ const onSubmit = (values) => {
     transition: all 0.5s !important;
 }
 .textoBaixo{
-    font-size: clamp(1rem, 2vw, 1.165rem);
+    font-size: clamp(1rem, 2vw, 1rem);
     font-weight: 500;
 }
 .textoBaixoPT2{
@@ -145,5 +168,6 @@ input{
     width: 90%;
     height: 60%;
 }
+
 }
 </style>
