@@ -78,7 +78,7 @@ const onSubmit = async (values) => {
             </Form> 
 </template>
 
-<style scoped>
+<style>
 .formularioLogin{
     background-color: #FAFEFF;
     display: flex;
@@ -118,6 +118,7 @@ const onSubmit = async (values) => {
 .textoBaixo{
     font-size: clamp(1rem, 2vw, 1rem);
     font-weight: 500;
+    color: #000;
 }
 .textoBaixoPT2{
     font-weight: 600;
