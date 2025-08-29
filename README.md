@@ -2,6 +2,7 @@
 
 Projeto frontend em Vue.js moderno e responsivo, desenvolvido para uma aplicação de rede social. Disponível nas versões desktop e mobile, com três telas principais.
 
+Teste a aplicação: https://calm-down-theta.vercel.app/
 ## 🚀 Tecnologias Utilizadas
 
 - **Vue.js 3.5.18** - Framework JavaScript progressivo
